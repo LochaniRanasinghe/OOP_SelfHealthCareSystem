@@ -18,11 +18,13 @@ public class PatientImplements implements PatientInterface{
             ppt.setString(3,patient.getEmail());
             ppt.setString(4,patient.getAddress());
             ppt.setString(5,patient.getPhone());
-            ppt.setString(6,patient.getAge());
+            ppt.setInt(6,patient.getAge());
 
             int cnt = ppt.executeUpdate();
             if(cnt!=0)
-                System.out.println("Successfully Registered the Patient");
+                System.out.println("\n");
+                System.out.println("Successfully Registered the Patient!");
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

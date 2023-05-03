@@ -7,7 +7,7 @@ public class DoctorImplements implements DoctorInterface{
     public void addDoctor(Doctor doctor) {
 
         con = DBConnection.createDBConnection();
-        String query = "insert into doctor values(?,?,?,?,?)";
+        String query = "insert into doctor values(?,?,?,?,?,?,?)";
 
         try {
             PreparedStatement ppt = con.prepareStatement(query);
@@ -16,7 +16,9 @@ public class DoctorImplements implements DoctorInterface{
             ppt.setString(2,doctor.getDoctorName());
             ppt.setString(3,doctor.getSpecialization());
             ppt.setInt(4,doctor.getSpecializationID());
-            ppt.setDouble(5,doctor.getDoctorFee());
+            ppt.setTime(5,doctor.getTime());
+            ppt.setDate(6,doctor.getDate());
+            ppt.setDouble(7,doctor.getDoctorFee());
 
             int cnt = ppt.executeUpdate();
             if(cnt!=0)
@@ -31,22 +33,24 @@ public class DoctorImplements implements DoctorInterface{
     public void showAllDoctors() {
         con = DBConnection.createDBConnection();
         String query = "select * from doctor";
-        System.out.println("-------------------------------------------------------------------------------------------------");
-        System.out.println("Doctor Details");
-        System.out.println("-------------------------------------------------------------------------------------------------");
-        System.out.format("%-17s%-20s%-20s%-20s%-10s%n","Doctor ID","Doctor Name", "Specialization","Specialization ID","Doctor Charges");
+
+        System.out.println("Available Doctors and Time Schedules");
+        System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.format("%-17s%-20s%-20s%-20s%-20s%-20s%-10s%n\n","Doctor ID","Doctor Name", "Specialization","Specialization ID","Available Time","Date","Doctor Charges");
         try{
             Statement stmt = con.createStatement();
             ResultSet result = stmt.executeQuery(query);
             while (result.next()){
-                System.out.format("%-17s%-20s%-20s%-20s%-10s%n",
+                System.out.format("%-17s%-20s%-20s%-20s%-20s%-20s%-10s%n",
                         result.getInt(1),
                         result.getString(2),
                         result.getString(3),
                         result.getInt(4),
-                        result.getDouble(5));
+                        result.getTime(5),
+                        result.getDate(6),
+                        result.getDouble(7));
             }
-            System.out.println("-------------------------------------------------------------------------------------------------");
+            System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------");
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -56,21 +60,26 @@ public class DoctorImplements implements DoctorInterface{
     public void showDoctorByID(int doctorID) {
         con=DBConnection.createDBConnection();
         String query = "select * from doctor where doctorID="+doctorID;
+        System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------");
         try{
             Statement stmt = con.createStatement();
             ResultSet result = stmt.executeQuery(query);
             while (result.next()){
-                System.out.format("%-17s%-20s%-20s%-20s%-10s%n",
+                System.out.format("%-17s%-20s%-20s%-20s%-20s%-20s%-10s%n",
                         result.getInt(1),
                         result.getString(2),
                         result.getString(3),
                         result.getInt(4),
-                        result.getDouble(5));
+                        result.getTime(5),
+                        result.getDate(6),
+                        result.getDouble(7));
             }
 
         }catch(Exception e){
             e.printStackTrace();
         }
+        System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------");
+
     }
 
     @Override

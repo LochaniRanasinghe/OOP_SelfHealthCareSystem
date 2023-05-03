@@ -13,6 +13,6 @@ public interface PatientInterface {
 
 
 //Delete patient
-    public void deletePatientByID(int patientID)    
+    public void deletePatientByID(int patientID);
 
 }

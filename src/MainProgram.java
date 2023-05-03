@@ -2,6 +2,11 @@ import Doctors.Doctor;
 import Doctors.DoctorImplements;
 import Doctors.DoctorInterface;
 import Doctors.DBConnection;
+import Patients.PatientImplements;
+import Patients.PatientInterface;
+import Patients.Patient;
+import java.sql.*;
+
 
 import  java.util.Scanner;
 public class MainProgram {
@@ -10,6 +15,8 @@ public class MainProgram {
         Scanner sc = new Scanner(System.in);
         //Object creation on doctor interface
         DoctorInterface doc = new DoctorImplements();
+        //Object creation on patient interface
+        PatientInterface pat = new PatientImplements();
 
         System.out.println("Welcome to Self Health Care System..");
         do{
@@ -18,6 +25,11 @@ public class MainProgram {
             System.out.println("3. Show Doctor by ID");
             System.out.println("4. Update Doctor");
             System.out.println("5. Delete Doctor");
+            System.out.println("6. Add Patients");
+            System.out.println("7. Show All Patients");
+            System.out.println("8. Show Patients by ID");
+            System.out.println("9. Delete Patients");
+
 
             System.out.print("Enter the number of the operation to proceed: ");
             int ch = sc.nextInt();
@@ -31,6 +43,15 @@ public class MainProgram {
                     String specialization=sc.next();
                     System.out.print("Enter Doctor SpecializationID: ");
                     int specializationID=sc.nextInt();
+
+                    System.out.println("Enter the available time slot (hh:mm:ss):");
+                    String timeString = sc.next();
+                    Time time = Time.valueOf(timeString);
+
+                    System.out.println("Enter the date (yyyy-mm-dd):");
+                    String dateString = sc.next();
+                    Date date = Date.valueOf(dateString);
+
                     System.out.print("Enter Doctor Fee: ");
                     double doctorFee=sc.nextDouble();
 
@@ -42,6 +63,8 @@ public class MainProgram {
                     doctor.setDoctorName(doctorName);
                     doctor.setSpecialization(specialization);
                     doctor.setSpecializationID(specializationID);
+                    doctor.setTime(time);
+                    doctor.setDate(date);
                     doctor.setDoctorFee(doctorFee);
                     doc.addDoctor(doctor);
                     break;
@@ -65,6 +88,47 @@ public class MainProgram {
                     int delid = sc.nextInt();
                     doc.deleteDoctor(delid);
                     break;
+                case 6:
+                    System.out.print("Enter Patient ID: ");
+                    int patientID=sc.nextInt();
+                    System.out.print("Enter Patient Name: ");
+                    String patientName=sc.next();
+                    System.out.print("Enter Patient Age: ");
+                    int patientAge=sc.nextInt();
+                    System.out.print("Enter Patient Address: ");
+                    String patientAddress=sc.next();
+                    System.out.print("Enter Patient Phone: ");
+                    String patientPhone=sc.next();
+                    System.out.print("Enter Patient Email: ");
+                    String patientEmail=sc.next();
+
+                    //Creating an object from Patient class
+                    Patient patient = new Patient();
+
+                    //Setting the input values gain by the user
+                    patient.setPatientID(patientID);
+                    patient.setPatientName(patientName);
+                    patient.setAge(patientAge);
+                    patient.setAddress(patientAddress);
+                    patient.setPhone(patientPhone);
+                    patient.setEmail(patientEmail);
+                    pat.addPatient(patient);
+                    break;
+                case 7:
+                    pat.showAllPatients();
+                    break;
+                case 8:
+                    System.out.print("Enter Patient ID to view patient details: ");
+                    int patid = sc.nextInt();
+                    pat.showPatientByID(patid);
+                    break;
+
+                case 9:
+                    System.out.print("Enter the ID to delete: ");
+                    int delpid = sc.nextInt();
+                    pat.deletePatientByID(delpid);
+                    break;
+
                 default:
                     System.out.println("Enter a valid number");
                     break;
