@@ -1,10 +1,14 @@
+import Appointments.Appoinment;
+import Billing.Billing;
+import DoctorRevenue.RevenueManagement;
 import Doctors.Doctor;
 import Doctors.DoctorImplements;
 import Doctors.DoctorInterface;
-import Doctors.DBConnection;
 import Patients.PatientImplements;
 import Patients.PatientInterface;
 import Patients.Patient;
+import Reviews.RateReviews;
+
 import java.sql.*;
 
 
@@ -17,6 +21,14 @@ public class MainProgram {
         DoctorInterface doc = new DoctorImplements();
         //Object creation on patient interface
         PatientInterface pat = new PatientImplements();
+        //Object creation on Appoinment class
+        Appoinment app = new Appoinment();
+        //Object creation from Billing class
+        Billing bill = new Billing();
+        //Object creation from RateReviews class
+        RateReviews rate = new RateReviews();
+        //Object creation from RevenueManagement class
+        RevenueManagement rev = new RevenueManagement();
 
         System.out.println("Welcome to Self Health Care System..");
         do{
@@ -29,7 +41,9 @@ public class MainProgram {
             System.out.println("7. Show All Patients");
             System.out.println("8. Show Patients by ID");
             System.out.println("9. Delete Patients");
-
+            System.out.println("10. Appointment/Billing/Rates per doctor");
+            System.out.println("11.Rating doctors");
+            System.out.println("12.Viw Revenue of each Doctor");
 
             System.out.print("Enter the number of the operation to proceed: ");
             int ch = sc.nextInt();
@@ -128,7 +142,32 @@ public class MainProgram {
                     int delpid = sc.nextInt();
                     pat.deletePatientByID(delpid);
                     break;
-
+                case 10:
+                    System.out.print("Enter Patient ID: ");
+                    int apid = sc.nextInt();
+                    System.out.print("Enter Doctor ID: ");
+                    int adid = sc.nextInt();
+                    app.addDoctorPatient(adid,apid);
+                    app.getPatientAndDoctorDetails(apid,adid);
+                    bill.getDoctorFee(adid,apid);
+                    rate.getDoctorReviews(adid);
+                    break;
+                case 11:
+                    System.out.println("You should know Doctor ID before reviewing the doctor");
+                    System.out.print("Enter Your ID: ");
+                    int pid=sc.nextInt();
+                    System.out.print("Enter Doctor ID: ");
+                    int did=sc.nextInt();
+                    doc.printDoctorName(did);
+                    System.out.print("Enter Your Review: ");
+                    String review =sc.next();
+                    rate.addReview(pid,did,review);
+                    break;
+                case 12:
+                    System.out.print("Enter Doctor ID: ");
+                    int doid=sc.nextInt();
+                    rev.displayPatientsAndCount(doid);
+                    break;
                 default:
                     System.out.println("Enter a valid number");
                     break;

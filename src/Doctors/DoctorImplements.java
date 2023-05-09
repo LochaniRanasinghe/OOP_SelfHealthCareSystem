@@ -115,4 +115,28 @@ public class DoctorImplements implements DoctorInterface{
             e.printStackTrace();
         }
     }
+
+    //Return Doctor Name when Doctor ID is entered
+    public void printDoctorName(int doctorID) {
+        con = DBConnection.createDBConnection();
+        String query = "SELECT doctorName FROM doctor WHERE doctorID = ?";
+
+        try {
+            PreparedStatement ppt = con.prepareStatement(query);
+            ppt.setInt(1, doctorID);
+            ResultSet rs = ppt.executeQuery();
+
+            if (rs.next()) {
+                String doctorName = rs.getString("doctorName");
+                System.out.println("Doctor of the Doctor you choose: " + doctorName);
+            } else {
+                System.out.println("No doctor found with ID: " + doctorID);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
 }

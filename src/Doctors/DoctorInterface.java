@@ -16,4 +16,7 @@ public interface DoctorInterface {
 
     //Delete doctor
     public void deleteDoctor(int doctorID);
+
+    //Print Doctor name
+    void printDoctorName(int did);
 }
