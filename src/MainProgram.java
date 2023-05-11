@@ -8,7 +8,6 @@ import Patients.PatientImplements;
 import Patients.PatientInterface;
 import Patients.Patient;
 import Reviews.RateReviews;
-
 import java.sql.*;
 
 
@@ -29,6 +28,8 @@ public class MainProgram {
         RateReviews rate = new RateReviews();
         //Object creation from RevenueManagement class
         RevenueManagement rev = new RevenueManagement();
+        //Creating an object from Doctor class
+        Doctor doctor = new Doctor();
 
         System.out.println("Welcome to Self Health Care System..");
         do{
@@ -43,7 +44,7 @@ public class MainProgram {
             System.out.println("9. Delete Patients");
             System.out.println("10. Appointment/Billing/Rates per doctor");
             System.out.println("11.Rating doctors");
-            System.out.println("12.Viw Revenue of each Doctor");
+            System.out.println("12.View Revenue of each Doctor");
 
             System.out.print("Enter the number of the operation to proceed: ");
             int ch = sc.nextInt();
@@ -69,8 +70,8 @@ public class MainProgram {
                     System.out.print("Enter Doctor Fee: ");
                     double doctorFee=sc.nextDouble();
 
-                    //Creating an object from Doctor class
-                    Doctor doctor = new Doctor();
+//                    //Creating an object from Doctor class
+//                    Doctor doctor = new Doctor();
 
                     //Setting the input values gain by the user
                     doctor.setDoctorID(doctorID);
@@ -83,12 +84,12 @@ public class MainProgram {
                     doc.addDoctor(doctor);
                     break;
                 case 2:
-                    doc.showAllDoctors();
+                    doctor.showAllDoctors();
                     break;
                 case 3:
                     System.out.print("Enter Doctor ID to view doctor details: ");
                     int docid = sc.nextInt();
-                    doc.showDoctorByID(docid);
+                    doctor.showDoctorByID(docid);
                     break;
                 case 4:
                     System.out.print("Enter Doctor ID you want to update: ");
@@ -150,7 +151,7 @@ public class MainProgram {
                     app.addDoctorPatient(adid,apid);
                     app.getPatientAndDoctorDetails(apid,adid);
                     bill.getDoctorFee(adid,apid);
-                    rate.getDoctorReviews(adid);
+                    rate.displayReviews(adid);
                     break;
                 case 11:
                     System.out.println("You should know Doctor ID before reviewing the doctor");

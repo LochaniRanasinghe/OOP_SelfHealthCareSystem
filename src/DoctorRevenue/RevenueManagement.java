@@ -31,12 +31,13 @@ public class RevenueManagement {
             feeRs.next();
             int doctorFee = feeRs.getInt("doctorFee");
             System.out.println("-------------------------------------------------------------------------------------------------");
-            System.out.println("\t\t\tFinal Revenue Report");
-            System.out.println("-------------------------------------------------------------------------------------------------\n");
-            System.out.println("\t\t\tConsultation fee of Doctor per patient: " + doctorFee);
+            System.out.println("\t\t\t\t\t\tFinal Revenue Report");
+            System.out.println("-------------------------------------------------------------------------------------------------");
+            System.out.println("\t\t\t***** Consultation fee of Doctor per patient: " + doctorFee+" *****\n");
 
             // Print patient names
-            System.out.println("\tAll Patients Consulted: ");
+            System.out.println("Names of all Patients Consulted: \n");
+
             int count = 0;
             while (rs.next()) {
                 String patientName = rs.getString("patientName");
@@ -44,10 +45,10 @@ public class RevenueManagement {
                 count++;
             }
             totalfee=count*doctorFee;
+            System.out.println("\n-------------------------------------------------------------------------------------------------");
             System.out.println("\t\t\tTotal Number of Patients Consulted: " + count);
-            System.out.println("-------------------------------------------------------------------------------------------------");
             System.out.println("\t\t\tTotal Revenue of the Doctor: "+totalfee);
-            System.out.println("-------------------------------------------------------------------------------------------------");
+            System.out.println("-------------------------------------------------------------------------------------------------\n\n");
 
         } catch (SQLException e) {
             throw new RuntimeException(e);

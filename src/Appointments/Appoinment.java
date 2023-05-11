@@ -17,7 +17,9 @@ public class Appoinment {
 
             int count = pstmt.executeUpdate();
             if(count != 0) {
-                System.out.println("Successfully added doctor-patient relationship to the database.");
+                System.out.println("------------------------------------------------------------------");
+                System.out.println("\t\tYou have successfully placed the Appointment");
+                System.out.println("------------------------------------------------------------------");
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -49,8 +51,9 @@ public class Appoinment {
                 Date date = rs.getDate("date");
                 double doctorFee = rs.getDouble("doctorFee");
 
+                System.out.println("\n");
                 System.out.println("------------------------------------------------------------------");
-                System.out.println("\t\t\t\t\tAPPOINTMENT DETAILS");
+                System.out.println("\t\t\t\t\tYOUR APPOINTMENT DETAILS");
                 System.out.println("------------------------------------------------------------------");
                 System.out.println("\t\tPATIENT DETAILS");
                 System.out.println("\t\t\tPatient Name: " +patientName );

@@ -7,27 +7,55 @@ public class RateReviews {
     Connection con;
 
     //Get All the reviews of a single doctor
-    public void getDoctorReviews(int doctorID) {
-        con = DBConnection.createDBConnection();
-        String query = "SELECT * FROM review WHERE doctorID = ?";
+//    public void getDoctorReviews(int doctorID) {
+//        con = DBConnection.createDBConnection();
+//        String query = "SELECT * FROM review WHERE doctorID = ?";
+//        try {
+//            PreparedStatement ppt = con.prepareStatement(query);
+//            ppt.setInt(1, doctorID);
+//            ResultSet rs = ppt.executeQuery();
+//            if (rs.next()) {
+//                System.out.println("Reviews for Doctor " + rs.getString("doctorName") + ":");
+//                do {
+//                    String review = rs.getString("review");
+//                    System.out.println("Review: " + review);
+//                    System.out.println("-----------------------------");
+//                } while (rs.next());
+//            } else {
+//                System.out.println("No reviews found for the given doctor ID");
+//            }
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
+    public void displayReviews(int doctorID) {
         try {
-            PreparedStatement ppt = con.prepareStatement(query);
-            ppt.setInt(1, doctorID);
-            ResultSet rs = ppt.executeQuery();
-            if (rs.next()) {
-                System.out.println("Reviews for Doctor " + rs.getString("doctorName") + ":");
-                do {
-                    String review = rs.getString("review");
-                    System.out.println("Review: " + review);
-                    System.out.println("-----------------------------");
-                } while (rs.next());
-            } else {
-                System.out.println("No reviews found for the given doctor ID");
+            con = DBConnection.createDBConnection();
+            PreparedStatement pstmt = con.prepareStatement("SELECT review FROM review WHERE doctorID=?");
+            pstmt.setInt(1, doctorID);
+            ResultSet rs = pstmt.executeQuery();
+
+            System.out.println("Reviews for Doctor ID: " + doctorID);
+            System.out.println("-----------------------------");
+
+            int count = 0;
+            while (rs.next()) {
+                count++;
+                System.out.println("Review " + count + ": " + rs.getString("review"));
+                System.out.println("-------------------------------------------------------------------------------------------------");
+
             }
+
+            if (count == 0) {
+                System.out.println("No reviews found for Doctor ID: " + doctorID);
+            }
+
+            con.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
+
 
     //Add Rate reviews
     public void addReview(int patientID, int doctorID, String review) {
@@ -44,7 +72,7 @@ public class RateReviews {
             int cnt = ppt.executeUpdate();
             if(cnt!=0) {
                 System.out.println("\n");
-                System.out.println("Review added successfully!");
+                System.out.println("Review added successfully!\n");
             }
 
         } catch (SQLException e) {

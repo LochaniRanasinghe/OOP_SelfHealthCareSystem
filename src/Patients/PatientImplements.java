@@ -24,7 +24,9 @@ public class PatientImplements implements PatientInterface{
             if(cnt!=0)
                 System.out.println("\n");
                 System.out.println("Successfully Registered the Patient!");
-
+                System.out.println("**Please remember your PatientID for the future proceedings");
+                System.out.println("Your PatientID is: "+patient.getPatientID());
+                System.out.println("\n");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -66,6 +68,7 @@ public class PatientImplements implements PatientInterface{
             Statement stmt = con.createStatement();
             ResultSet result = stmt.executeQuery(query);
             while (result.next()){
+                System.out.println("-------------------------------------------------------------------------------------------------");
                 System.out.format("%-17s%-20s%-20s%-20s%-10s%-10s%n",
                         result.getInt(1),
                         result.getString(2),

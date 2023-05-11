@@ -3,7 +3,7 @@ package Doctors;
 import java.sql.Date;
 import java.sql.Time;
 
-public class Doctor {
+public class Doctor extends DoctorImplements{
     private int doctorID;
     private String doctorName;
     private String specialization;

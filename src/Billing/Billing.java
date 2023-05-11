@@ -21,7 +21,9 @@ public class Billing {
             ResultSet rs = ppt.executeQuery();
             if (rs.next()) {
                 doctorFee = rs.getDouble("doctorFee");
-                System.out.println("\t\t\tFINAL BILL");
+                System.out.println("\n\n");
+                System.out.println("------------------------------------------------------------------");
+                System.out.println("\t\t\tYOUR FINAL BILL");
                 System.out.println("------------------------------------------------------------------");
                 System.out.println("\t\t\tDoctor Consultation Fee: "+doctorFee);
                 System.out.println("\t\t\tHospital Charges: " +hospitalCharges);
@@ -29,7 +31,7 @@ public class Billing {
                 System.out.println("------------------------------------------------------------------");
                 totalCharges = doctorFee+hospitalCharges+medicalCharges;
                 System.out.println("\t\t\tTotal Charges: "+totalCharges);
-                System.out.println("------------------------------------------------------------------");
+                System.out.println("------------------------------------------------------------------\n");
 
             } else {
                 System.out.println("No doctor fee found for the given doctor and patient IDs");
