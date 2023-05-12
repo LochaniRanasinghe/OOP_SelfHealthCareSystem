@@ -6,28 +6,7 @@ import java.util.Date;
 public class RateReviews {
     Connection con;
 
-    //Get All the reviews of a single doctor
-//    public void getDoctorReviews(int doctorID) {
-//        con = DBConnection.createDBConnection();
-//        String query = "SELECT * FROM review WHERE doctorID = ?";
-//        try {
-//            PreparedStatement ppt = con.prepareStatement(query);
-//            ppt.setInt(1, doctorID);
-//            ResultSet rs = ppt.executeQuery();
-//            if (rs.next()) {
-//                System.out.println("Reviews for Doctor " + rs.getString("doctorName") + ":");
-//                do {
-//                    String review = rs.getString("review");
-//                    System.out.println("Review: " + review);
-//                    System.out.println("-----------------------------");
-//                } while (rs.next());
-//            } else {
-//                System.out.println("No reviews found for the given doctor ID");
-//            }
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
+
     public void displayReviews(int doctorID) {
         try {
             con = DBConnection.createDBConnection();
