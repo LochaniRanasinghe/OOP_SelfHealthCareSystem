@@ -29,29 +29,40 @@ public class PrimaryProgram {
         //Creating an object from Doctor class
         Doctor doctor = new Doctor();
 
-        System.out.println("Welcome to Self Health Care System..\n");
+        System.out.println("-----------------------------------------------------------------------------------");
+        System.out.println("\t\t\tWelcome to Self Health Care System..");
+        System.out.println("-----------------------------------------------------------------------------------");
+
         Scanner input = new Scanner(System.in);
 
         do {
             System.out.println("\t1. Patient Portal");
             System.out.println("\t2. Admin Portal");
-            System.out.println("\t3. Doctor Portal\n");
+            System.out.println("\t3. Doctor Portal");
+            System.out.println("-----------------------------------------------------------------------------------\n");
 
             System.out.print("Enter the portal number you want to enter: ");
             int choice = input.nextInt();
             switch (choice) {
                 case 1:
                     do{
-                    System.out.println("\t\t1. Patients Registration");
-                    System.out.println("\t\t2. View Profile by ID");
-                    System.out.println("\t\t3. Available Doctor List");
-                    System.out.println("\t\t4. View Doctor Details and Rates by ID");
-                    System.out.println("\t\t5. Rating Doctors");
-                    System.out.println("\t\t6. Place an Appointment\n");
-                    System.out.print("Enter the number of the operation to perform: ");
+                        System.out.println("-----------------------------------------------------------------------------------");
+                        System.out.println("\t\tWelcome to Patient Portal");
+                        System.out.println("-----------------------------------------------------------------------------------\n");
+                        System.out.println("\t\t1. Patients Registration");
+                        System.out.println("\t\t2. View Profile by ID");
+                        System.out.println("\t\t3. Available Doctor List");
+                        System.out.println("\t\t4. View Doctor Details and Rates by ID");
+                        System.out.println("\t\t5. Rating Doctors");
+                        System.out.println("\t\t6. Place an Appointment\n");
+                        System.out.print("Enter the number of the operation to perform: ");
                     int ch1 = input.nextInt();
                     switch (ch1){
                         case 1:
+                            System.out.println("-----------------------------------------------------------------------------------");
+                            System.out.println("\t\tPatient Registration");
+                            System.out.println("\t\t**Please provide patient details to proceed the registration...");
+                            System.out.println("-----------------------------------------------------------------------------------\n");
                             System.out.print("Enter Patient ID: ");
                             int patientID=sc.nextInt();
                             System.out.print("Enter Patient Name: ");
@@ -80,6 +91,9 @@ public class PrimaryProgram {
                             break;
 
                         case 2:
+                            System.out.println("-----------------------------------------------------------------------------------");
+                            System.out.println("\t\tView Patient Profile");
+                            System.out.println("-----------------------------------------------------------------------------------\n");
                             System.out.print("Enter Patient ID to view patient details: ");
                             int patid = sc.nextInt();
                             pat.showPatientByID(patid);
@@ -88,6 +102,9 @@ public class PrimaryProgram {
                             doctor.showAllDoctors();
                             break;
                         case 4:
+                            System.out.println("-----------------------------------------------------------------------------------");
+                            System.out.println("\t\tView Doctor Profile");
+                            System.out.println("-----------------------------------------------------------------------------------\n");
                             System.out.print("Enter Doctor ID to view Doctor details: ");
                             int docid = sc.nextInt();
                             //view doctor details
@@ -96,6 +113,9 @@ public class PrimaryProgram {
                             rate.displayReviews(docid);
                             break;
                         case 5:
+                            System.out.println("-----------------------------------------------------------------------------------");
+                            System.out.println("\t\tRate Doctors");
+                            System.out.println("-----------------------------------------------------------------------------------\n");
                             System.out.println("You should know Doctor ID before reviewing the doctor");
                             System.out.print("Enter Your ID: ");
                             int pid=sc.nextInt();
@@ -146,6 +166,9 @@ public class PrimaryProgram {
                     } while (true);
                 case 2:
                     do {
+                        System.out.println("-----------------------------------------------------------------------------------");
+                        System.out.println("\t\tWelcome to Admin Portal");
+                        System.out.println("-----------------------------------------------------------------------------------");
                         System.out.println("\t\t1. View All Patients");
                         System.out.println("\t\t2. Delete Patient Profile");
                         System.out.println("\t\t3. View All Doctors");
@@ -157,6 +180,9 @@ public class PrimaryProgram {
                                 pat.showAllPatients();
                                 break;
                             case 2:
+                                System.out.println("-----------------------------------------------------------------------------------");
+                                System.out.println("\t\tDelete Patient Profiles");
+                                System.out.println("-----------------------------------------------------------------------------------\n");
                                 System.out.print("Enter the ID of the patient to delete: ");
                                 int delpid = sc.nextInt();
                                 pat.deletePatientByID(delpid);
@@ -165,6 +191,9 @@ public class PrimaryProgram {
                                 doctor.showAllDoctors();
                                 break;
                             case 4:
+                                System.out.println("-----------------------------------------------------------------------------------");
+                                System.out.println("\t\tDelete Doctor Profiles");
+                                System.out.println("-----------------------------------------------------------------------------------\n");
                                 System.out.print("Enter the ID of the doctor to delete: ");
                                 int delid = sc.nextInt();
                                 doc.deleteDoctor(delid);
@@ -177,12 +206,19 @@ public class PrimaryProgram {
 
                 case 3:
                     do {
+                        System.out.println("-----------------------------------------------------------------------------------");
+                        System.out.println("\t\tWelcome to Doctor Portal");
+                        System.out.println("-----------------------------------------------------------------------------------");
                         System.out.println("\t1. Doctor Registration");
                         System.out.println("\t2. View Total Revenue\n");
                         System.out.print("Enter the number of the operation to perform: ");
                         int ch3 = input.nextInt();
                         switch (ch3) {
                             case 1:
+                                System.out.println("-----------------------------------------------------------------------------------");
+                                System.out.println("\t\tDoctor Registration");
+                                System.out.println("\t\t**Please provide doctor details to proceed the registration...");
+                                System.out.println("-----------------------------------------------------------------------------------\n");
                                 System.out.print("Enter Doctor ID: ");
                                 int doctorID=sc.nextInt();
                                 System.out.print("Enter Doctor Name: ");
